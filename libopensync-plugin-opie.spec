@@ -16,6 +16,7 @@ BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	opensync-devel >= 0.20
 BuildRequires:	libneon-devel
 BuildRequires:  libcurl-devel
+BuildRequires:	scons
 
 %description
 This plugin allows applications using OpenSync to synchronise via OPIE
@@ -24,12 +25,11 @@ This plugin allows applications using OpenSync to synchronise via OPIE
 %setup -q
 
 %build
-%configure2_5x
-%make
-										
+scons prefix=%{_prefix} libsuffix=%{_lib}
+
 %install
 rm -rf $RPM_BUILD_ROOT
-%makeinstall_std
+scons install DESTDIR=%{buildroot}
 
 %find_lang %name
 
@@ -38,9 +38,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(-,root,root)
-%doc AUTHORS
+%doc AUTHORS README
 %{_libdir}/opensync/plugins/*
 %{_datadir}/opensync/defaults/*
 %{_libdir}/opensync/formats/opie.*
-
-
