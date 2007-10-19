@@ -41,4 +41,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS README
 %{_libdir}/opensync/plugins/*
 %{_datadir}/opensync/defaults/*
-%{_libdir}/opensync/formats/opie.*
+%{_libdir}/opensync/formats/*
