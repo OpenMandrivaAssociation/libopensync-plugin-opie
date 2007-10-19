@@ -1,5 +1,5 @@
 %define name	libopensync-plugin-opie
-%define version	0.20
+%define version	0.33
 %define release %mkrel 1
 
 Name: 	 	%{name}
@@ -7,8 +7,7 @@ Summary: 	OPIE plugin for opensync synchronization tool
 Version: 	%{version}
 Release: 	%{release}
 
-Source:		svn://svn.opensync.org/plugins/opie/%{name}-%{version}.tar.bz2
-Patch0:         libopensync-plugin-opie-gcc-warnings.diff
+Source:		http://www.opensync.org/download/releases/%{version}/%{name}-%{version}.tar.bz2
 URL:		http://www.opensync.org
 License:	LGPL
 Group:		Office
@@ -23,8 +22,6 @@ This plugin allows applications using OpenSync to synchronise via OPIE
 
 %prep
 %setup -q
-%patch0
-autoreconf -sfi
 
 %build
 %configure2_5x
