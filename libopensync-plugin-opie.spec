@@ -1,5 +1,5 @@
 %define name	libopensync-plugin-opie
-%define version	0.33
+%define version	0.34
 %define release %mkrel 1
 
 Name: 	 	%{name}
@@ -9,14 +9,14 @@ Release: 	%{release}
 
 Source:		http://www.opensync.org/download/releases/%{version}/%{name}-%{version}.tar.bz2
 URL:		http://www.opensync.org
-License:	LGPL
+License:	LGPLv2+
 Group:		Office
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 
 BuildRequires:	opensync-devel >= 0.20
 BuildRequires:	libneon-devel
 BuildRequires:  libcurl-devel
-BuildRequires:	scons
+BuildRequires:	cmake
 
 %description
 This plugin allows applications using OpenSync to synchronise via OPIE
@@ -25,11 +25,14 @@ This plugin allows applications using OpenSync to synchronise via OPIE
 %setup -q
 
 %build
-scons prefix=%{_prefix} libsuffix=%{_lib}
+%cmake
+%make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-scons install DESTDIR=%{buildroot}
+cd build
+%makeinstall_std
+cd -
 
 %find_lang %name
 
