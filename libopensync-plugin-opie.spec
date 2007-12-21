@@ -11,6 +11,7 @@ Source:		http://www.opensync.org/download/releases/%{version}/%{name}-%{version}
 URL:		http://www.opensync.org
 License:	LGPLv2+
 Group:		Office
+BuildRoot:	%{_tmppath}/%{name}-buildroot
 
 BuildRequires:	opensync-devel >= 0.20
 BuildRequires:	libneon-devel
