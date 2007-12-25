@@ -1,5 +1,5 @@
 %define name	libopensync-plugin-opie
-%define version	0.34
+%define version	0.35
 %define release %mkrel 1
 
 Name: 	 	%{name}
@@ -42,6 +42,6 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(-,root,root)
 %doc AUTHORS README
-%{_libdir}/opensync/plugins/*
-%{_datadir}/opensync/defaults/*
-%{_libdir}/opensync/formats/*
+%{_libdir}/opensync-1.0/plugins/*
+%{_datadir}/opensync-1.0/defaults/*
+%{_libdir}/opensync-1.0/formats/*
