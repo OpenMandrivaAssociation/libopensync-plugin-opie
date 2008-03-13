@@ -1,47 +1,42 @@
-%define name	libopensync-plugin-opie
-%define version	0.36
-%define release %mkrel 1
-
-Name: 	 	%{name}
-Summary: 	OPIE plugin for opensync synchronization tool
-Version: 	%{version}
-Release: 	%{release}
-
-Source:		http://www.opensync.org/download/releases/%{version}/%{name}-%{version}.tar.bz2
+Name: 	 	libopensync-plugin-opie
+Summary: 	OPIE plugin for OpenSync synchronization framework
+Epoch:		1
+Version: 	0.22
+Release: 	%{mkrel 1}
+Source0:	http://www.opensync.org/download/releases/%{version}/%{name}-%{version}.tar.bz2
 URL:		http://www.opensync.org
-License:	LGPLv2+
+License:	GPLv2
 Group:		Office
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-
-BuildRequires:	opensync-devel >= 0.20
+BuildRequires:	libopensync-devel < 0.30
 BuildRequires:	libneon-devel
 BuildRequires:  libcurl-devel
-BuildRequires:	cmake
+Requires:	libopensync >= %{epoch}:%{version}
 
 %description
-This plugin allows applications using OpenSync to synchronise via OPIE
+This plugin allows OPIE-based devices to synchronize using the OpenSync
+framework.
 
 %prep
 %setup -q
+autoreconf -sfi
 
 %build
-%cmake
+%configure2_5x
 %make
-
+										
 %install
-rm -rf $RPM_BUILD_ROOT
-cd build
+rm -rf %{buildroot}
 %makeinstall_std
-cd -
 
-%find_lang %name
+%find_lang %{name}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)
-%doc AUTHORS README
-%{_libdir}/opensync-1.0/plugins/*
-%{_datadir}/opensync-1.0/defaults/*
-%{_libdir}/opensync-1.0/formats/*
+%doc AUTHORS
+%{_libdir}/opensync/plugins/*
+%{_datadir}/opensync/defaults/*
+%{_libdir}/opensync/formats/opie.*
