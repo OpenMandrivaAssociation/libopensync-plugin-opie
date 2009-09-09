@@ -2,7 +2,7 @@ Name: 	 	libopensync-plugin-opie
 Summary: 	OPIE plugin for OpenSync synchronization framework
 Epoch:		1
 Version: 	0.22
-Release: 	%{mkrel 1}
+Release: 	%{mkrel 2}
 Source0:	http://www.opensync.org/download/releases/%{version}/%{name}-%{version}.tar.bz2
 URL:		http://www.opensync.org
 License:	GPLv2
